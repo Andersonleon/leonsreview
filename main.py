@@ -9,6 +9,7 @@ from PIL import Image, ImageOps
 from datetime import datetime
 import random
 import dotenv
+import os
 
 dotenv.load_dotenv()
 
@@ -54,8 +55,8 @@ def generate_specs_table(specs):
 
 def createmedia():
     WP_URL = "https://leonsreview.com/wp-json/wp/v2/media"
-    USERNAME = dotenv.get("USERNAME")
-    PASSWORD = dotenv.get("PASSWORD")
+    USERNAME = os.getenv("WPNAME")
+    PASSWORD = os.getenv("PASSWORD")
     
     try:
         # Download the image from the link
@@ -151,8 +152,8 @@ def get_or_create_tags(WP_URL, USERNAME, PASSWORD, tags):
 def createwebpage(bot_response, media_id, exerp, meta):
 
     WP_URL = "https://leonsreview.com/wp-json/wp/v2/posts"
-    USERNAME = dotenv.get("USERNAME")
-    PASSWORD = dotenv.get("PASSWORD")
+    USERNAME = os.getenv("WPNAME")
+    PASSWORD = os.getenv("PASSWORD")
 
     category_id = get_category_id("https://leonsreview.com/wp-json/wp/v2", USERNAME, PASSWORD)
 
